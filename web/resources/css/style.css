@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    /*overflow: hidden;*/
+}
+
+html,
+body,
+.wrapper {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px 0;
+
+}
+
+.img-form {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.is-true {
+    color: green;
+    font-weight: bold;
+}
+
+.is-false {
+    color: red;
+    font-weight: bolder;
+}
+
+.centered {
+    text-align: center;
+}
+
+.centered>* {
+    margin: 0 auto;
+}
+
+.student-info {
+    float: right
+}
+
+.header {
+    font-family: "Andale Mono", sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    padding: 10px;
+    background-color: #5c6fd6;
+}
+
+body {
+    margin: 0 auto;
+    border: 0;
+    font-family: "Andale Mono", monospace;
+    overflow-x: hidden;
+
+}
+
+.areas-img {
+    position: relative;
+}
+
+.areas-img>img {
+    height: 200px;
+    width: 200px;
+}
+
+.form-input {
+    margin: 1%;
+}
+
+.form-input-y {
+    margin: 0.5%;
+}
+
+.form-input-x {
+    display: table;
+    width: 100%;
+    margin: 0.5%;
+}
+.form-input-x > *{
+    display: table-cell;
+    text-align: left;
+}
+
+.ui-sliderentry > *:first-child{
+    text-align: left;
+}
+.ui-sliderentry{
+    margin: 0.5%;
+    text-align: center;
+}
+.form-input-x > *:last-child{
+    float: right;
+}
+.select-one-menu{
+    margin: 2px 0.5% 0.5%;
+}
+
+
+.data-send-form {
+    min-width: 240px;
+    max-width: 240px;
+    float: right;
+    margin: 0 auto;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.submit-button {
+    background-color: #cddb0c;
+    border: 1px solid #cea614;
+    margin: 2%;
+
+}
+
+.submit-button:hover {
+    background-color: #979005;
+}
+
+.back-button {
+    background-color: #03dba1;
+    border: 1px solid #0dce9b;
+    margin: 2%;
+
+}
+
+.back-button:hover {
+    background-color: #069765;
+}
+
+.radio-buttons>p {
+    padding: 0 2px;
+}
+
+.radio-input,
+.radio-label {
+    display: block;
+}
+
+.clear-button {
+    background-color: #ff11de;
+    border: 1px solid #ff11de;
+}
+
+.clear-button:hover {
+    background-color: rgb(158, 18, 12);
+}
+
+.clear-button, .submit-button, .back-button {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 8px 16px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: background-color 0.1s linear;
+    -moz-transition: background-color 0.1s linear;
+    -o-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;
+}
+
+.form-buttons {
+    margin: 3%
+}
+.error-log{
+    color: red
+}
+
+
+.student-footer-icon {
+    margin: 0;
+}
+
+.footer {
+    flex: 0 0 auto;
+    color: #ffffff;
+    background-color: #070bd6;
+}
+
+.student-footer-icon>a>img {
+    height: 25px;
+    width: 25px;
+    padding: 2px;
+}
+
+.student-info-footer {
+    font-size: small;
+}
+
+@media (min-width:100px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .img-form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .table-wrapper {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .table {
+        overflow-x: auto;
+        width: 100vw;
+    }
+
+    .table-header {
+        overflow-x: auto
+    }
+}
+
+@media (min-width:630px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .img-form {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+    .table-wrapper {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .table {
+        margin-top: 3%;
+        width: 100vw;
+        overflow-x: auto;
+    }
+
+    .table-header {
+        overflow-x: auto;
+    }
+}
+
+@media (min-width:1150px) {
+    .content {
+        flex-direction: row;
+    }
+
+    .table {
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .data-send-form {
+        min-width: 240px;
+        max-width: 240px;
+        margin: 0;
+    }
+}
+a.games {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #fafafa;
+    padding: 10px 20px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 0px 6px #27ae60;
+    background: #2ecc71;
+}
+a.games:hover {
+    background: #36d479;
+}
+a.games:active {
+    position: relative;
+    top: 3px;
+    box-shadow: 0px 0px #23a33d;
+    background: #23a33d;
+}

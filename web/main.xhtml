@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<f:view>
+    <h:head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport" />
+        <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+        <h:outputStylesheet name="css/style.css" />
+        <h:outputStylesheet name="css/table.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+        <h:outputScript name="js/script.js" />
+        <h:outputScript name="js/clock.js" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+        <title>lab3</title>
+    </h:head>
+    <h:body  style="background-image: url('resources/img/1.jpg')">
+        <div class="wrapper">
+            <div class="header">
+                <span>Вариант 1441</span>
+                <span id="time" />
+                <span class="student-info">Кадыров, Мансуров. P3210</span>
+            </div>
+            <div class="content" id="content">
+                <div class="img-form">
+                    <h:form method="post" class="data-send-form" id="form">
+                        <div class="form-input">
+                            <h:outputLabel style="text-align: left;"> X=
+                                <h:outputText id="X" value="#{point.x}" />
+                                <h:inputHidden id="x-value" value="#{point.x}"/>
+                            </h:outputLabel>
+                            <div class="x_value">
+                            <h:commandButton id="x-4" class="button" value="-4" action="#{point.setX(-4)}"/>
+                            <h:commandButton id="x-3" class="button" value="-3" action="#{point.setX(-3)}"/>
+                            <h:commandButton id="x-2" class="button" value="-2" action="#{point.setX(-2)}"/>
+                            <h:commandButton id="x-1" class="button" value="-1" action="#{point.setX(-1)}"/>
+                            <h:commandButton id="x-0" class="button" value="0" action="#{point.setX(0)}"/>
+                            <h:commandButton id="x1" class="button" value="1" action="#{point.setX(1)}"/>
+                            <h:commandButton id="x2" class="button" value="2" action="#{point.setX(2)}"/>
+                            <h:commandButton id="x3" class="button" value="3" action="#{point.setX(3)}"/>
+                            <h:commandButton id="x4" class="button" value="4" action="#{point.setX(4)}"/>
+                            </div>
+                            <div class="form-input-y">
+                                <h:outputLabel style="float: left">Y:</h:outputLabel>
+                                <h:inputText value="#{point.y}" id="y-value" maxlength="15"
+                                             a:placeholder="-5 ... 5" type="text" converterMessage="Y должен быть числом!!!" validatorMessage="Введите корректный Y (от -5 до 5)">
+                                    <f:validateDoubleRange minimum="-5.0" maximum="5.0" for="y-value" />
+                                    <h:outputText value="#{point.y}" />
+                                </h:inputText>
+                            </div>
+                            <div class="select-one-menu">
+                                <h:outputLabel style="float: left">R:</h:outputLabel>
+                                <h:selectOneMenu id="r_value" value="#{point.r}"
+                                                 style="width:160px">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                    <f:ajax event="valueChange" render="canvasR" onevent="reDrawGraph()" immediate="true" />
+                                    <f:ajax event="valueChange" onevent="updateCanvasR()" immediate="true" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-buttons">
+                                <h:commandButton value="Проверить" id="check" action="#{point.addPoint}"
+                                                 class="submit-button" onclick="drawSubmit()"/>
+
+                                <h:commandButton value="Очистить" action="#{point.clearList}"
+                                                 onclick="clearCanvas()"
+                                                 class="clear-button" />
+                                <h:commandButton value="На главную" class="back-button" action="toIndex" />
+                            </div>
+                            <h:message for="y-value" class="error-log" id="error-log" />
+                        </div>
+                    </h:form>
+                    <h:form id="canvasForm" class="areas-img centered">
+                        <h:inputHidden id="canvasX" value="#{point.x}" />
+                        <h:inputHidden id="canvasY" value="#{point.y}" />
+                        <h:inputHidden id="canvasR" value="#{point.r}" />
+                        <canvas id="plot" width="300" height="300">
+                            Canvas not supported
+                        </canvas>
+                        <h:commandButton id="canvasSubmit" style="display: none" action="#{point.addPoint()}" />
+                    </h:form>
+                </div>
+                <div class="table-wrapper">
+
+                    <h:dataTable value="#{point.points}" var="points" styleClass="table"
+                        headerClass="filter__link" rowClasses="table-row" id="tableResults">
+                        <h:column>
+                            <f:facet name="header">X</f:facet>
+                            #{points.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            #{points.y}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            #{points.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Result/Answer</f:facet>
+                            #{points.status}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+            <div class="centered footer">
+                <span class="student-info-footer">&copy;AmirjonQodirov, 2019</span>
+                <p class="student-footer-icon">
+                    <a href="https://github.com/AmirjonQodirov" title="GitHub">
+                        <h:graphicImage name="img/GitHubIcon.png" />
+                    </a>
+                </p>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+
+</html>
